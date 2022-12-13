@@ -1,0 +1,92 @@
+##### Find Cost of Tile to Cover W x H Floor
+
+# price per tile
+while True:
+    try:
+        price_per_tile = float(input("Please enter the price of a tile in dollars: "))
+    except:
+        print("Please enter a positive number")
+        continue
+    if price_per_tile > 0:
+        price_per_tile = round(price_per_tile)
+        print("You have entered ${}\n".format(price_per_tile))
+        break
+    else:
+        print("Please enter a positive number")
+        continue
+
+# tile_length
+while True:
+    try:
+        tile_length = int(input("Please enter the length of the longest side of a tile in cm: "))
+    except:
+        print("Please enter a positive number")
+        continue
+    if tile_length > 0:
+        tile_length = round(tile_length)
+        print("You have entered {}cm for the length of the tile\n".format(tile_length))
+        break
+    else:
+        print("Please enter a positive number")
+        continue
+
+# tile_width
+while True:
+    try:
+        tile_width = int(input("Please enter the width of the shortest side of a tile in cm: "))
+    except:
+        print("Please enter a positive number")
+        continue
+    if tile_width > 0:
+        tile_width = round(tile_width)
+        print("You have entered {}cm for the length of the tile\n".format(tile_width))
+        break
+    else:
+        print("Please enter a positive number")
+        continue
+
+# room_length
+while True:
+    try:
+        room_length = int(input("Please enter the length of the room in cm: "))
+    except:
+        print("Please enter a positive number")
+        continue
+    if room_length > 0:
+        room_length = round(room_length)
+        print("You have entered {}cm for the length of the room\n".format(room_length))
+        break
+    else:
+        print("Please enter a positive number")
+        continue
+
+# room_breadth
+while True:
+    try:
+        room_breadth = int(input("Please enter the breadth of the room in cm: "))    
+    except:
+        print("Please enter a positive number")
+        continue
+    if room_breadth > 0:
+        room_breadth = round(room_breadth)
+        print("You have entered {}cm for the length of the room\n".format(room_breadth))
+        break
+    else:
+        print("Please enter a positive number")
+        continue
+        
+# Calculate area of tiles
+tile_area = tile_length * tile_width
+
+# Calculate area of room
+room_area = room_length * room_breadth
+
+# Calculate n.o. of tiles
+num_tiles = round(room_area / tile_area)
+
+# Calculate total cost
+total_cost = price_per_tile * num_tiles
+costs = round(total_cost,2)
+
+print("The number of tiles required are {}".format(num_tiles))
+print("The total cost of laying tiles onto the floor is ${}".format(costs))
