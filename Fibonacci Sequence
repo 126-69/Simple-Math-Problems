@@ -1,0 +1,25 @@
+# Fibonacci Sequence
+
+while True:
+    try:
+        nth_term = int(input("Please enter a positive number you would want for the fibonacci series to count up to: "))
+    except:
+        print("please enter a positive number!")
+        continue
+    if nth_term > 0:
+        print("You have entered: {}\n".format(nth_term))
+        break
+    else:
+        print("please enter a positive number!")
+        continue
+
+# first 2 terms
+n1 = 0
+n2 = 1
+counter = 0
+while counter < nth_term:
+    print(n1)
+    nth = n1 + n2
+    n1 = n2
+    n2 = nth
+    counter += 1
