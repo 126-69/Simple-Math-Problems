@@ -1,0 +1,80 @@
+# Mortgage Calculator
+
+# Cost of purchasing home
+while True:
+    try:
+        home_cost = float(input("Please enter the cost of purchasing your home in dollars: "))
+    except:
+        print("Please enter a positive integer!")
+        continue
+    if home_cost > 0:
+        print("The cost of your home is ${}\n".format(home_cost))
+        break
+        
+# Loan amount
+while True:
+    try:
+        loan_amount = float(input("Please enter the loan amount in dollars: "))
+    except:
+        print("Please enter a positive integer less than home_cost!")
+        continue
+    if 0 < loan_amount < home_cost:
+        print("Your loan amount is ${}\n".format(loan_amount))
+        break
+    elif loan_amount > home_cost: 
+        print("Loaned amount cannot exceed cost of home!\n")
+        continue
+    elif loan_amount == 0:
+        print("You did not have to loan money to buy your house! Good job!\n")
+        break
+    else:
+        print("Please enter a positive integer less than home_cost!\n")
+        
+# Annual interest rate
+while True:
+    try:
+        annual_interest = float(input("Please enter the annual interest rate on your loan amount in percent: "))
+    except:
+        print("Please enter a positive percent from 0%-100%!")
+        continue
+    if 0 < annual_interest < 100:
+        print("Your annual interest rate is {}%\n".format(annual_interest))
+        break
+    else:
+        print("Please enter a positive percent from 0%-100%!\n")
+        
+# Loan tenure
+while True:
+    try:
+        loan_tenure_yrs = float(input("Please enter the loan tenure in terms of years: "))
+    except:
+        print("Please enter a positive number!\n")
+        continue
+    if loan_tenure_yrs > 0:
+        print("Your loan tenure is {} years\n".format(loan_tenure_yrs))
+        break
+    else:
+        print("Please enter a positive number!\n")
+
+        
+p = loan_amount 
+
+# Monthly interest rate
+monthly_interest = (annual_interest/100) / 12
+i = float(monthly_interest)
+
+# Loan tenure in months
+loan_tenure_months = loan_tenure_yrs * 12
+n = float(loan_tenure_months)
+
+# Monthly mortgage
+monthly_mortgage = p * (i * (1 + i) ** n) / ((1 + i) ** n - 1)
+print("Monthly mortgage is ${}".format(monthly_mortgage))
+
+# Total amount paid
+total_amount = monthly_mortgage*loan_tenure_months
+print("Total amount to be paid is ${:.2f}".format(total_amount))
+
+# Interest payable
+interest_payable = total_amount - loan_amount
+print("Total interest to be paid is ${:.2f}".format(interest_payable))
