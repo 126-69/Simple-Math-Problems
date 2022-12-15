@@ -1,0 +1,412 @@
+# Simplified Singapore Personal Income Tax Calculator
+
+# Employment Income
+while True:
+    try:
+        print("Section A: Main Income")
+        employment_income = int(input("Please enter employment income: "))
+    except:
+        print("Please enter a positive number!\n")
+        continue
+    if employment_income >= 0:
+        print("You have entered *${}* as your employment income.\n".format(employment_income))
+        break
+    else:
+        print("Please enter a positive number!\n")
+        
+# Deductible Employment Expenses
+while True:
+    try:
+        print ("Sction A: Main Income")
+        print("Deductible Employment Expenses must fulfill the following: ")
+        print("\t1. Incurred while carrying out your official duties\n\t2. Not reimbursed by your employer\n\t3. Not capital or private in nature")
+        employment_expenses = int(input("Please enter employment expenses: "))
+    except:
+        print("Please enter a positive number!\n")
+        continue
+    if employment_expenses > 0:
+        print("You have entered *${}* as your deductible employment expenses.\n".format(employment_expenses))
+        break
+    elif employment_expenses == 0:
+        print("You have entered *$0* as deductible employment income.\n")
+        break
+    else:
+        print("Please enter a positive number!\n")
+              
+# Additional Income from trade, business, profession or vocation
+while True:
+    try:
+        print("Section B: Other sources of income")
+        print("Additional Income from trade, business, profession or vocation")
+        overseas_income = int(input("Please enter all overseas income: "))
+        freelance_income = int(input("Please enter all income from the gig economy/freelance: "))
+    except:
+        print("Please enter a positive number!\n")
+        continue
+    if overseas_income >= 0 and freelance_income >= 0:
+        print("You have entered *${}* as overseas income.".format(overseas_income))
+        print("You have entered *${}* as income derived from freelancing.\n".format(freelance_income))
+        break
+    else:
+        print("Please enter a positive number!\n")
+        
+# Additional Income from property or investments and other sources
+while True:
+    try:
+        print("Section B: Other sources of income")
+        print("Additional Income from property or investments and other sources")
+        rent_from_property = int(input("Please enter rent from property: "))
+        dividends = int(input("Please enter dividends earnings: "))
+        sales_from_assets = int(input("Please enter gains from all sales of assets: "))
+    except:
+        print("Please enter a positive number!\n")
+        continue
+    if rent_from_property >= 0 and dividends >= 0 and sales_from_assets >= 0:
+        print("You have entered *${}* as rents from property.".format(rent_from_property))
+        print("You have entered *${}* as dividends earnings.".format(dividends))
+        print("You have entered *${}* as earnings from selling assets.\n".format(sales_from_assets))
+        break
+    else:
+        print("Please enter a positive number!\n")
+        
+# Income from other sources
+while True:
+    try:
+        print("Section B: Other sources of income")
+        print("Total income from other sources includes: ")
+        print("\t1. Royalties \n\t2. Estate Incomes \n\t3. Winnings \n\t4. Withdrawals from Supplementary Retirement Savings (SRS) \n\t5. Others")
+        other_sources = int(input("Please enter total income from other sources: "))
+    except:
+        print("Please enter a positive number!\n")
+        continue
+    if other_sources >= 0:
+        print("You have entered *${}* as total income from other sources.\n".format(other_sources))
+        break
+    else:
+        print("Please enter a positive number!\n")
+        
+# Calculate total annual income
+print("Total annual income would be the sum of: ")
+print("\t1. Employment Income \n\t2. Overseas Income \n\t3. Income derived from freelancing \n\t4. Rents from properties \n\t5. Dividends earnings \n\t6. Sales from assets \n\t7. Others")
+total_annual_income = employment_income + overseas_income + freelance_income + rent_from_property + dividends + sales_from_assets + other_sources - employment_expenses
+print("Your total annual income before taxes and claimables is ${}".format(total_annual_income))
+
+
+# Other deductibles
+while True:
+    try:
+        print("Section C: Other deductibles")
+        print("Donations that are the following are non-taxable: ")
+        print("\t1. Donations for advertising at the IPC facility, event, or programme. \n\t2. Donations or gifts that are for a 'foreign charitable purpose.'")
+        print("# During the period 1 Jan 2016 to 31 Dec 2023, donors will qualify for a 250% tax deduction")
+        donations = int(input("Please enter amount of approved donations: "))
+    except:
+        print("Please enter a positive number!\n")
+        continue
+    if donations >= 0:
+        print("You have entered *${}* as approved donations.".format(donations))
+        donation_tax_deductible = int(2.5 * donations)
+        print("You can thus qualify for a tax deductible of *${}*\n".format(donation_tax_deductible))
+        break
+    else:
+        print("Please enter a positive number!")
+        
+# Earned Income Relief
+while True:
+    try:
+        print("Section D: Earned Income Relief")
+        earned_income_relief = 0
+        age = int(input("Please enter your age as of 31 Dec the previous year: "))
+        disability = input("Please enter if you have a disability Y or N: ")
+    except:
+        print("Please enter a positive integer!\n")
+        continue
+    if 0 < age < 55 and disability.upper()[0] == "N":
+        print("You are qualified to claim a maximum of *$1000*\n")
+        earned_income_relief = 1000
+        break
+    elif 55 < age < 59 and disability.upper()[0] == "N":
+        print("You are qualified to claim a maximum of *$6000*\n")
+        earned_income_relief = 6000
+        break
+    elif age > 60 and disability.upper()[0] == "N":
+        print("You are qualified to claim a maximum of *$8000*\n")
+        earned_income_relief = 8000
+        break
+    elif 0 < age < 55 and disability.upper()[0] == "Y":
+        print("You are qualified to claim a maximum of *$4000*\n")
+        earned_income_relief = 4000
+        break
+    elif 55 < age < 59 and disability.upper()[0] == "Y":
+        print("You are qualified to claim a maximum of *$10 000*\n")
+        earned_income_relief = 10000
+        break
+    elif age > 60 and disability.upper()[0] == "Y":
+        print("You are qualified to claim a maximum of *$12 000*\n")
+        earned_income_relief = 12000
+        break
+    else:
+        print("Error")
+    
+# Spouse relief
+while True:
+    try:
+        print("Section E: Spouse relief")
+        spouse_relief = 0
+        print("Spouse relief: ")
+        print("Qualifying conditions: ")
+        print("\t1. Your spouse was living with/supported by you. \n\t2. Your spouse did not have an annual income exceeding $4,000.")
+        spouse = input("Please enter if you have a spouse Y or N: ")
+        spouse_disability = input("Please enter if your spouse has a disability Y or N: ")
+    except:
+        print("Invalid, please enter Y or N!\n")
+        continue
+    if spouse.upper()[0] == "Y" and spouse_disability.upper()[0] == "N":
+        print("You are qualified to claim a maximum of *$2000*\n")
+        spouse_relief = 2000
+        break
+    elif spouse.upper()[0] == "N":
+        print("You do not qualify to claim\n")
+        spouse_relief = 0
+        break
+    elif spouse.upper()[0] == "Y" and spouse_disability.upper()[0] == "Y":
+        print("You are qualified to claim a maximum of *$5500*\n")
+        spouse_relief = 5500
+        break
+        
+# Child Relief
+while True:
+    try:
+        print("Section F: Child Relief")
+        print("Child relief qualifying conditions: ")
+        print("\t1. Child is under 16 or still studying \n\t2. Child's annual income is less than $4000 \n\t3. Child is physically or mentally disabled")
+        child = int(input("Please enter how many children you have: "))
+        child_disability = input("Please indicate if child is disabled Y or N: ")
+    except:
+        print("Invalid!\n")
+        continue
+    if type(child) and child_disability.upper()[0] == "N":
+        child_relief = int(child * 4000)
+        print("You are qualified to claim a maximum of *${}\n* for all children\n".format(child_relief))
+        break
+    elif type(child) and child_disability.upper()[0] == "Y":
+        child_relief = int(child * 7500)
+        print("You are qualified to claim a maximum of *${}\n* for all children\n".format(child_relief))
+        break
+    else:
+        print("Invalid!")
+        
+# Parent Relief
+while True:
+    try:
+        print("Section G: Parent Relief")
+        print("Parent relief qualifying conditions: ")
+        print("\t1. Dependent lives in Sinagpore permanently and you have incurred more than $2000 supporting individual \n\t2. Dependent is 55 or older \n\t3. Dependent's income is less than $4000")
+        dependents = int(input("Please enter n.o. of dependents: "))
+        dependents_dwelling = input("Please indicate if they stay with you, Y or N: ")
+        dependent_disability = input("Please indicate if they are disabled or not, Y or N: ")
+    except:
+        print("Invalid!\n")
+        continue
+    if dependents >= 0 and dependents_dwelling.upper()[0] == "N" and dependent_disability.upper()[0] == "N":
+        parent_relief = int(5500 * dependents)
+        print("You are qualified to claim a maximum of *${}* for all dependents\n".format(parent_relief))
+        break
+    elif dependents >= 0 and dependents_dwelling.upper()[0] == "N" and dependent_disability.upper()[0] == "Y":
+        parent_relief = int(10000 * dependents)
+        print("You are qualified to claim a maximum of *${}* for all dependents\n".format(parent_relief))
+        break
+    elif dependents >= 0 and dependents_dwelling.upper()[0] == "Y" and dependent_disability.upper()[0] == "N":
+        parent_relief = int(9000 * dependents)
+        print("You are qualified to claim a maximum of *${}* for all dependents\n".format(parent_relief))
+        break
+    elif dependents >= 0 and dependents_dwelling.upper()[0] == "Y" and dependent_disability.upper()[0] == "Y":
+        parent_relief = int(14000 * dependents)
+        print("You are qualified to claim a maximum of *${}* for all dependents\n".format(parent_relief))
+        break
+
+# Handicap sibling relief
+while True:
+    try:
+        print("Section H: Handicap sibling relief")
+        print("Handicap Sibling relief qualifying conditions: ")
+        print("\t1. Sibling lives in Sinagpore permanently and you have incurred more than $2000 supporting sibling \n\t2. Sibling is disabled")
+        siblings = int(input("Please enter n.o. of siblings: "))
+        sibling_disability = input("Please indicate if they are disabled or not, Y or N: ")
+    except:
+        print("Invalid\n")
+        continue
+    if siblings >= 0 and sibling_disability.upper()[0] == "Y":
+        handicap_sibling_relief = int(5500 * siblings)
+        print("You are qualified to claim a maximum of *${}* for all handicapped siblings\n".format(handicap_sibling_relief))
+        break
+    elif siblings >= 0 and sibling_disability.upper()[0] == "N":
+        handicap_sibling_relief = 0
+        print("You do not qualify to claim the Handicap Sibling Relief\n")
+        break
+    else:
+        print("Invalid\n")
+
+# Grandparent Caregiver Relief
+while True:
+    try:
+        print("Section I: Grandparent Caregiver Relief")
+        print("Grandparent Caregiver Relief qualifying conditions: ")
+        print("\t1. You are a working mother \n\t2. Your parent, grandparent, parent-in-law or grandparent-in-law is looking after your child below 12 years old, living in Singapore and are not working \n\t3. No one else has claimed GCR on the individual")
+        working_mother = input("Please enter if you are a working mother Y or N: ")
+    except:
+        print("Please enter Y or N!\n")
+        continue
+    if working_mother.upper()[0] == "Y":
+        grandparent_caregiver_relief = 3000
+        print("You are qualified to claim a maximum of *$3000*\n")
+        break
+    elif working_mother.upper()[0] == "N":
+        grandparent_caregiver_relief = 0
+        print("You do not qualify to claim the Grandparent Caregiver Relief\n")
+        break
+        
+# CPF Cash Top up Relief
+while True:
+    try:
+        print("Section J: CPF Cash Top up Relief")
+        print("CPF Cash Top up Relief qualifying conditions: ")
+        cpf_top_up = int(input("Please enter the amount of money used to top up: "))
+    except:
+        print("Please enter a psoitive integer!\n")
+        continue
+    if 0 <= cpf_top_up <= 7000:
+        cpf_cash_relief = cpf_top_up
+        print("You are qualified to claim *${}*\n".format(cpf_cash_relief))
+        break
+    elif cpf_top_up > 7000:
+        cpf_cash_relief = 7000
+        print("You are qualified to claim a maximum of *$7000*\n")
+        break
+    else: 
+        print("Invalid!")
+
+# Course Fees Relief
+while True:
+    try:
+        print("Section K: Course Fees Relief")
+        print("Course Fees Relief qualifying conditions: ")
+        print("\t1. Enrolled in course to improve academic, professional or vocational qualification \n\t2. Course relevant to your current employment, trade, business, profession or vocation")
+        course_fee = int(input("Please enter the cost of the entire course: "))
+    except:
+        print("Please enter a positive integer\n")
+        continue
+    if 0 <= course_fee <= 5500:
+        course_fee_relief = course_fee
+        print("You are qualified to claim *${}* from Course Fees Relief\n".format(course_fee_relief))
+        break
+    elif course_fee > 5500:
+        course_fee_relief = 5500
+        print("You are qualified to claim *$5500* from Course Fees Relief\n")
+        break
+        
+# SRS contributions and tax relief
+while True:
+    try:
+        print("Section L: SRS contributions and tax relief")
+        print("SRS contributions and tax relief qualifying conditions: ")
+        print("\t1. Your SRS account cannot be suspended as at 31 Dec of the year of contribution")
+        srs = int(input("Please enter the amount of SRS contributions in a year: "))
+    except:
+        print("Please enter a positive integer!\n")
+        continue
+    if 0 <= srs <= 15300:
+        srs_relief = srs
+        print("You are qualified to claim *${}* of SRS relief\n".format(srs_relief))
+        break
+    elif srs > 15300:
+        srs_relief = 15300
+        print("You are qualified to claim *$15300* of SRS relief\n")
+        break
+    else:
+        print("Please enter a positive integer!")
+        
+# Foreign Domestic Worker Levy (FDWL) Relief
+while True:
+    try:
+        print("Section M: Foreign Domestic Worker Levy (FDWL) Relief")
+        print("FDWL contributions and tax relief qualifying conditions: ")
+        print("\t1. Couple employs a foreign domestic worker \n\t2. Married")
+        num_FDW = int(input("Please enter the number of foreign domestic workers hired: "))
+        num_months = int(input("Please enter the number of months foreign domestic worker is hired: "))
+    except:
+        print("Please enter a positive integer!\n")
+        continue
+    if num_FDW == 0:
+        fdwl_relief = 0
+        print("You are qualified to claim *$0*\n")
+        break
+    elif num_FDW == 1:
+        fdwl_relief = int(300 * num_months * 2)
+        print("You are qualified to claim *${}* of FDWL Relief\n".format(fdwl_relief))
+        break
+    elif num_FDW > 1:
+        fdwl_relief = int(300 * num_months * 2 + 450 * num_months * 2)
+        print("You are qualified to claim *${}* of FDWL Relief\n".format(fdwl_relief))
+        break
+    else:
+        print("Please enter a positive integer!")
+        
+# Total Deductibles
+print("Section M: Total Deductibles")
+total_deductibles = donation_tax_deductible + earned_income_relief + spouse_relief + parent_relief + handicap_sibling_relief + grandparent_caregiver_relief + cpf_cash_relief + course_fee_relief + srs_relief + fdwl_relief
+print("You are qualified to claim up to *${}* of deductibles".format(total_deductibles))
+
+# Taxable Income:
+print("Section N: Taxable Income")
+taxable_income = total_annual_income - total_deductibles
+if taxable_income <= 0:
+    print("Your total taxable income is *$0*")
+elif taxable_income > 0:
+    print("Your total taxable income is *${}*".format(taxable_income))
+else:
+    print("Error!")
+    
+# Calculate income tax
+print("Section O: Income Tax")
+if 0 <= taxable_income <= 20000:
+    income_tax = 0
+    print("Your income tax is *$0*")
+elif 20000 <= taxable_income <= 30000:
+    income_tax = int((2/100)*(taxable_income - 20000))
+    print("Your income tax is *${}*".format(income_tax))
+elif 30000 <= taxable_income <= 40000:
+    income_tax = int((35/1000)*(taxable_income - 30000) + 200)
+    print("Your income tax is *${}*".format(income_tax))
+elif 40000 <= taxable_income <= 80000:
+    income_tax = int((7/100)*(taxable_income - 40000) + 550)
+    print("Your income tax is *${}*".format(income_tax))
+elif 80000 <= taxable_income <= 120000:
+    income_tax = int((115/1000)*(taxable_income - 80000) + 3350)
+    print("Your income tax is *${}*".format(income_tax))
+elif 120000 <= taxable_income <= 160000:
+    income_tax = int((15/100)*(taxable_income - 120000) + 7950)
+    print("Your income tax is *${}*".format(income_tax))
+elif 160000 <= taxable_income <= 200000:
+    income_tax = int((18/100)*(taxable_income - 160000) + 13950)
+    print("Your income tax is *${}*".format(income_tax))
+elif 200000 <= taxable_income <= 240000:
+    income_tax = int((19/100)*(taxable_income - 200000) + 21150)
+    print("Your income tax is *${}*".format(income_tax))
+elif 240000 <= taxable_income <= 280000:
+    income_tax = int((195/1000)*(taxable_income - 240000) + 28750)
+    print("Your income tax is *${}*".format(income_tax))
+elif 280000 <= taxable_income <= 320000:
+    income_tax = int((2/10)*(taxable_income - 280000) + 36550)
+    print("Your income tax is *${}*".format(income_tax))
+elif 320000 <= taxable_income <= 500000:
+    income_tax = int((22/100)*(taxable_income - 320000) + 44500)
+    print("Your income tax is *${}*".format(income_tax))
+elif 500000 <= taxable_income <= 1000000:
+    income_tax = int((23/100)*(taxable_income - 500000) + 84150)
+    print("Your income tax is *${}*".format(income_tax))
+elif taxable_income > 1000000:
+    income_tax = int((24/100)*(taxable_income - 1000000) + 199150)
+    print("Your income tax is *${}*".format(income_tax))
+else:
+    print("You are not required to pay taxes!")
